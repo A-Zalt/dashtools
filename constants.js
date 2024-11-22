@@ -8,6 +8,8 @@ export const SECRETS = {
 
 export const LIBRARY_SECRET = "8501f9c2-75ba-4230-8188-51037c4da102"
 
+export const WRAITH_CHK_CONSTANT = "BA4DAQIF"
+
 export const KEYS = {
     SAVE_DATA: "\x0B",
     MESSAGES: "14251",
@@ -137,7 +139,8 @@ export const DEFAULT_ENDPOINTS = {
     "musicLibrary": "music/musiclibrary_02.dat",
     "musicLibraryOld": "music/musiclibrary.dat",
     "sfxLibrary": "sfx/sfxlibrary.dat",
-    "getChallenges": "getGJChallenges.php"
+    "getChallenges": "getGJChallenges.php",
+    "getSecretReward": "getGJSecretReward.php"
 }
 
 export const ENDPOINTS_2_205 = {
@@ -354,6 +357,10 @@ export const DIFFICULTIES = {
 }
 
 export const VERSIONS = {
+    gameVersion: 22,
+    binaryVersion: 43
+}
+export const VERSIONS_2_206 = {
     gameVersion: 22,
     binaryVersion: 42
 }
