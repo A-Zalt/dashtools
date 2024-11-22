@@ -152,6 +152,9 @@ export class GDClient {
     getOldWeeklyLevels(opts, callback, params, options, secret) {
         levels.getLevels({type: 22, ...opts}, this, params, callback, options, secret)
     }
+    getOldEventLevels(opts, callback, params, options, secret) {
+        levels.getLevels({type: 23, ...opts}, this, params, callback, options, secret)
+    }
     getLevelsFromList(listID, opts, callback, params, options, secret) {
         levels.getLevels({type: 25, listID, ...opts}, this, params, callback, options, secret)
     }
@@ -165,7 +168,10 @@ export class GDClient {
         levels.getDailyLevel(this, params, callback, options, secret)
     }
     getWeeklyLevel(callback, params, options, secret) {
-        levels.getDailyLevel(this, {weekly: 1, ...params}, callback, options, secret)
+        levels.getDailyLevel(this, {type: 1, ...params}, callback, options, secret)
+    }
+    getEventLevel(callback, params, options, secret) {
+        levels.getDailyLevel(this, {type: 2, ...params}, callback, options, secret)
     }
     reportLevel(levelID, callback, params, options, secret) {
         levels.reportLevel(levelID, this, params, callback, options, secret)
@@ -452,6 +458,9 @@ export class GDClient {
     }
     getSFXLibrary(callback, params, options) {
         songs.getSFXLibrary(this, params, callback, options)
+    }
+    getWraithCode(code, callback, params, options, secret) {
+        rewards.getWraithCode(this, code, params, callback, options, secret)
     }
 }
 export let utils = u
