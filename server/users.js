@@ -22,6 +22,7 @@ export function getUserByAccountID(accountID, logout, instance, params, callback
         auth.gjp2 = utils.gjp2(instance.account.password)
     }
     genericRequest("getUserInfo", {targetAccountID: accountID, ...auth}, function(data) {
+        if (data == -1) throw new Error("-1")
         callback(utils.parseUser(data))
     }, instance, params, options, secret)
 }
