@@ -1,6 +1,6 @@
 {
   "name": "dashtools",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Library for interacting with Geometry Dash servers",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": ".git"
+    "url": "https://github.com/A-Zalt/dashtools.git"
   },
   "keywords": [
     "geometry-dash",
