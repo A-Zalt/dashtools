@@ -93,3 +93,41 @@ export function getChallenges(instance, params, callback, options, secret) {
         })
     }, instance, params, options, secret)
 }
+export function getWraithCode(instance, code, params, callback, options, secret) {
+    genericRequest("getSecretReward", {
+        chk: `${utils.rs(5)}${constants.WRAITH_CHK_CONSTANT}`,
+        udid: instance.account.udid,
+        uuid: instance.account.uuid,
+        accountID: instance.account.accountID,
+        gjp2: utils.gjp2(instance.account.password),
+        rewardKey: code
+    }, function(data) {
+        if (data == -1) throw new Error(-1)
+        let segments = data.split("|")
+        let infoRaw = segments[0].slice(5)
+        let hash = segments[1]
+        let info = utils.xor(utils.base64Decode(infoRaw), constants.KEYS.CHEST_REWARDS).split(":")
+        console.log(data)
+        console.log(utils.xor(utils.base64Decode(infoRaw), constants.KEYS.CHEST_REWARDS))
+        let rewardRaw = info[4].split(",")
+        let reward = {
+            reward: Number(rewardRaw[0]),
+            amount: Number(rewardRaw[1])
+        }
+        if (info[3] == "2") {
+            reward = {
+                iconType: Number(rewardRaw[0]),
+                iconID: Number(rewardRaw[1])
+            }
+        }
+        callback({
+            randomString: info[0],
+            randomNumber: info[1] ? Number(info[1]) : 0,
+            codeID: Number(info[2]),
+            type: Number(info[3]),
+            ...reward,
+            hash,
+            isHashValid: utils.sha1(`${infoRaw}${constants.SALTS.REWARDS}`) == hash
+        })
+    }, instance, params, options, secret)
+}
